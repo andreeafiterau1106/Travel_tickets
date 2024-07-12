@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket List</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <header>
+        <h1 id="title">Flight Ticket List</h1>
+    </header>
+    <main>
+        <table id="flight-tickets">
+            <thead>
+                <tr>
+                    <th>Airline</th>
+                    <th>Destination</th>
+                    <th>Price</th>
+                    <th>Departure Date</th>
+                    <th>Flight Duration</th>
+                    <th>Stopovers</th>
+                    <th>Special Offer</th>
+                    <th>Additional Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.airline }}</td>
+                    <td>{{ ticket.destination }}</td>
+                    <td>{{ ticket.price }} EUR</td>
+                    <td>{{ ticket.departure_date }}</td>
+                    <td>{{ ticket.duration }}</td>
+                    <td>{{ ticket.stopovers|yesno:"Yes,No" }}</td>
+                    <td>{{ ticket.special_offer|yesno:"Yes,No" }}</td>
+                    <td>{{ ticket.additional_details }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
